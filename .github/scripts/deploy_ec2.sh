@@ -18,17 +18,17 @@ ssh -i $KEY $EC2_USER@$EC2_HOST << EOF
   if [ ! -d "app-devops" ]; then
       git clone https://github.com/iamsubbu3/app-devops.git
   else
-      cd Flask_app && git pull
+      cd app-devops && git pull
   fi
 
   # Navigate to project and build Docker image
-  cd Flask_app
-  docker build -t flask-app .
+  cd app-devops
+  docker build -t flask-demo .
 
   # Stop and remove old container if exists
-  docker stop flask-app || true
-  docker rm flask-app || true
+  docker stop flask-demo || true
+  docker rm flask-demo || true
 
   # Run new container on port 80 -> 5000
-  docker run -d -p 80:5000 --name flask-app flask-app:latest
+  docker run -d -p 80:5000 --name flask-demo flask-demo:latest
 EOF
