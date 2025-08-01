@@ -2,7 +2,7 @@
 
 EC2_USER="ubuntu"            
 EC2_HOST="100.25.216.214"    
-KEY=""iamsubbu-keypair.pem""      
+KEY="/home/iamsubbu/Downloads/iamsubbu-keypair.pem"      
 
 ssh -i $KEY $EC2_USER@$EC2_HOST << EOF
   # Update system and install required packages
@@ -15,14 +15,14 @@ ssh -i $KEY $EC2_USER@$EC2_HOST << EOF
   sudo usermod -aG docker ubuntu
 
   # Pull or update your repository
-  if [ ! -d "app-devops" ]; then
+  if [ ! -d "Flask_app" ]; then
       git clone https://github.com/iamsubbu3/app-devops.git
   else
-      cd app-devops && git pull
+      cd Flask_app && git pull
   fi
 
   # Navigate to project and build Docker image
-  cd app-devops
+  cd Flask_app
   docker build -t flask-demo .
 
   # Stop and remove old container if exists
