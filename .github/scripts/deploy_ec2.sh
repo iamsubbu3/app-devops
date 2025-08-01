@@ -15,7 +15,7 @@ ssh -i $KEY $EC2_USER@$EC2_HOST << EOF
   sudo usermod -aG docker ubuntu
 
   # Pull or update your repository
-  if [ ! -d "Flask_app" ]; then
+  if [ ! -d "app-devops" ]; then
       git clone https://github.com/iamsubbu3/app-devops.git
   else
       cd Flask_app && git pull
