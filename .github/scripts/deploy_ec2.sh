@@ -23,12 +23,12 @@ ssh -i $KEY $EC2_USER@$EC2_HOST << EOF
 
   # Navigate to project and build Docker image
   cd Flask_app
-  docker build -t flask-demo .
+  docker build -t flask-app .
 
   # Stop and remove old container if exists
-  docker stop flask-demo || true
-  docker rm flask-demo || true
+  docker stop flask-app || true
+  docker rm flask-app || true
 
   # Run new container on port 80 -> 5000
-  docker run -d -p 80:5000 --name flask-demo flask-demo:latest
+  docker run -d -p 80:5000 --name flask-app flask-app:latest
 EOF
